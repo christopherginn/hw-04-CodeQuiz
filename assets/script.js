@@ -8,8 +8,72 @@ var startBtnEl = document.querySelector("#start");
 var nextBtnEl = document.querySelector("#next");
 var submitAnswersBtnEl = document.querySelector("#submitAnswers");
 var backWelcomeBtnEl = document.querySelector("#backtowelcome");
+var questionEl = document.querySelector("#question");
+var answersEl = document.querySelector("#multiplechoice");
+var userScore = 0;
 
 var timeLeft = 60;
+
+var questions = [
+    {
+      question: "What house was Harry Potter in?",
+      answers: ["Gryffindoor", "Ravenclaw", "Slytherin", "Hufflepuff"],
+      answer: 0
+    },
+    {
+      question: "What was Hermione's cat's name?",
+      answers: ["Crookshanks", "Peter Pettigrew", "Scabbers", "Harry"],
+      answer: 0
+    }
+  ];
+
+  var currentQuestion = 0;
+
+  function populateQuestion() {
+    var questionObj = questions[currentQuestion];
+    // Remove the current list items
+    answersEl.innerHTML = "";
+    questionEl.textContent = (questionObj.question);
+    questionObj.answers.forEach(function (question) {
+      var li = document.createElement("li");
+      li.textContent = question;
+      answersEl.appendChild(li);
+    });
+    if (currentQuestion === questions.length - 1) {
+      currentQuestion = 0;
+    } else {
+      currentQuestion++;
+    }
+
+    answersEl.addEventListener("click", function(event){
+        var userAnswerSel = event.target;
+        if (userAnswerSel.matches("li")) {
+            if (userAnswerSel.innerHTML === questionObj.answers[0]) {
+                console.log("correct");
+                userScore += 5;
+                console.log(userScore);
+                populateQuestion();
+            } else { // incorrect answer
+                timeLeft -= 5;
+            }
+        }
+    });
+  };
+
+  function userAnswer(){
+      answersEl.addEventListener("click", function(event){
+        var userAnswerSel = event.target;
+        if (userAnswerSel.matches("li")) { 
+        // console.log(userAnswerSel.innerHTML);
+            if (userAnswerSel === questions[currentQuestion].answer) {
+                alert("Correct");
+            } else {
+                alert("incorrect");
+            }
+
+        }
+      });
+  }
 
 // welcomeScreenEl.setAttribute("style", "display:none");
 
@@ -26,6 +90,10 @@ function init() {
         questionScreenEl.removeAttribute("style", "display");
         timerEl.removeAttribute("style", "display");
         countdown();
+        populateQuestion();
+        // userAnswer();
+        
+
     })
 };
 
@@ -58,8 +126,8 @@ function countdown() {
   function gameOver() {
     questionScreenEl.setAttribute("style", "display:none");
     endScreenEl.removeAttribute("style", "display");
-    endScreenEl.textContent("Game Over");
-  }
+    // endScreenEl.textContent("Game Over");
+  };
 // function setEventListeners() {
 //     startBtnEl.addEventListener("click", function (evt) {
 //     evt.preventDefault();
