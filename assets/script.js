@@ -12,7 +12,7 @@ var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#multiplechoice");
 var userScore = 0;
 
-var timeLeft = 60;
+var timeLeft = 1000;
 
 var questions = [
     {
@@ -23,7 +23,7 @@ var questions = [
     {
       question: "What was Hermione's cat's name?",
       answers: ["Crookshanks", "Peter Pettigrew", "Scabbers", "Harry"],
-      answer: 0
+      answer: 3
     }
   ];
 
@@ -48,9 +48,9 @@ var questions = [
     answersEl.addEventListener("click", function(event){
         var userAnswerSel = event.target;
         if (userAnswerSel.matches("li")) {
-            if (userAnswerSel.innerHTML === questionObj.answers[0]) {
+            if (userAnswerSel.innerHTML === questionObj.answers[questionObj.answer]) {
                 console.log("correct");
-                userScore += 5;
+                userScore +=5
                 console.log(userScore);
                 populateQuestion();
             } else { // incorrect answer

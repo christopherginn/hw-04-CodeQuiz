@@ -1,3 +1,51 @@
 .hide {
     display: none;
 }
+header {
+    /* position: relative;
+    display: inline-block; */
+}
+
+#highscores {
+    position: relative;
+    right: auto;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    /* width: 50%;
+    height: 50%; */
+}
+
+#timeleft {
+    /* text-align: right; */
+    display: inline;
+}
+
+body {
+    background-color: #566573;
+    color: #EDBB99;
+    /* display: flex; */
+}
+
+/* ul {
+    list-style-position: inside
+  } */
+
+li {
+    list-style: none;
+    padding:15px;
+    /* margin: 5px; */
+    text-align: center;
+    margin-left: -30px;
+}
+
+#multiplechoice li:hover {
+    cursor: hand;
+    color: #fff;
+    background-color: #BEB8B4;
+    border-radius: 5px;
+}

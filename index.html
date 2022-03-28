@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Code Quiz</title>
 </head>
 <body>
+    <!-- <div id="app"> -->
     <header>
         <div id="highscores" data-state="hidden">
             <button id="highscoresButton" data-state="hidden">Highscores</button>
@@ -16,18 +17,18 @@
             <p>Countdown</p>
         </div>
     </header>
-    <main>
+    <main id="app">
         <div id="welcomeScreen" data-state="hidden">
             <h1>Welcome!</h1>
             <button id="start">Start</button> 
         </div>
         <div id="questionScreen" class="" data-state="hidden">
             <h1>Question Screen</h1>
-            <h2 id="question">Text</h2>
+            <h2 id="question">Text to be replaced</h2>
             <ul id="multiplechoice"></ul>
             <button id="next">Next Question</button>
         </div>
-        <div id="endScreen" class=""" data-state="hidden">
+        <div id="endScreen" class="" data-state="hidden">
             <h1>Game Over</h1>
             <button id="submitAnswers">Submit</button>
         </div>
@@ -36,6 +37,7 @@
             <button id="backtowelcome">Back to Welcome Screen</button>
         </div>
     </main>
+    <!-- </div> -->
     <script src="./assets/script.js"></script>
 </body>
 </html>
