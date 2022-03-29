@@ -11,8 +11,9 @@ var backWelcomeBtnEl = document.querySelector("#backtowelcome");
 var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#multiplechoice");
 var userScore = 0;
+var userNameInput = document.querySelector("#name");
 
-var timeLeft = 1000;
+var timeLeft = 15;
 
 var questions = [
     {
@@ -24,12 +25,17 @@ var questions = [
       question: "What was Hermione's cat's name?",
       answers: ["Crookshanks", "Peter Pettigrew", "Scabbers", "Harry"],
       answer: 3
+    },
+    {
+        question:"",
+        answers:[],
+        answer: 0
     }
   ];
 
-  var currentQuestion = 0;
+var currentQuestion = 0;
 
-  function populateQuestion() {
+function populateQuestion() {
     var questionObj = questions[currentQuestion];
     // Remove the current list items
     answersEl.innerHTML = "";
@@ -39,11 +45,20 @@ var questions = [
       li.textContent = question;
       answersEl.appendChild(li);
     });
-    if (currentQuestion === questions.length - 1) {
-      currentQuestion = 0;
-    } else {
+    if (currentQuestion != questions.length - 1) {
       currentQuestion++;
-    }
+    } else if (currentQuestion === questions.length-1) {
+        questionScreenEl.setAttribute("style", "display:none");
+        highscoresScreenEl.removeAttribute("style", "display");
+        timerEl.setAttribute("style", "display:none");
+    };
+    
+    countdown();
+
+    // if (currentQuestion === questions.length -1) {
+    //     questionScreenEl.setAttribute("style", "display:none");
+    //     highscoresScreenEl.removeAttribute("style", "display");
+    // }
 
     answersEl.addEventListener("click", function(event){
         var userAnswerSel = event.target;
@@ -58,7 +73,7 @@ var questions = [
             }
         }
     });
-  };
+};
 
   function userAnswer(){
       answersEl.addEventListener("click", function(event){
@@ -89,7 +104,7 @@ function init() {
         welcomeScreenEl.setAttribute("style", "display:none");
         questionScreenEl.removeAttribute("style", "display");
         timerEl.removeAttribute("style", "display");
-        countdown();
+        // countdown();
         populateQuestion();
         // userAnswer();
         
@@ -112,6 +127,8 @@ function countdown() {
         // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
+      } else if (currentQuestion === questions.length-1) {
+        clearInterval(timeInterval);
       } else {
         // Once `timeLeft` gets to 0, set `timerEl` to an empty string
         timerEl.textContent = '';
@@ -123,9 +140,14 @@ function countdown() {
     }, 1000);
   };
 
+  function stopTimer () {
+    countdown();
+  };
+
   function gameOver() {
     questionScreenEl.setAttribute("style", "display:none");
     endScreenEl.removeAttribute("style", "display");
+
     // endScreenEl.textContent("Game Over");
   };
 // function setEventListeners() {

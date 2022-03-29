@@ -15,9 +15,12 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #504E4D;
+    border-radius: 5px;
     /* text-align: center; */
-    /* width: 50%;
-    height: 50%; */
+    width: 600px;
+    height: 500px;
+    margin-top: 25px;
 }
 
 #timeleft {
@@ -28,7 +31,9 @@ header {
 body {
     background-color: #566573;
     color: #EDBB99;
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* ul {
@@ -47,5 +52,10 @@ li {
     cursor: hand;
     color: #fff;
     background-color: #BEB8B4;
+    border-radius: 5px;
+}
+
+#app {
+    background-color: #504E4D;
     border-radius: 5px;
 }

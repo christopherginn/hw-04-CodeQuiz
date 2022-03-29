@@ -14,7 +14,7 @@
             <button id="highscoresButton" data-state="hidden">Highscores</button>
         </div>
         <div id="timeleft" data-state="hidden">
-            <p>Countdown</p>
+            Ready?
         </div>
     </header>
     <main id="app">
@@ -30,7 +30,13 @@
         </div>
         <div id="endScreen" class="" data-state="hidden">
             <h1>Game Over</h1>
+            <form>
+                <div>
+                    <label for="name">Name</label> <br>
+                    <input type="text" name="first-name" id="first-name" placeholder="Enter your name" />
+                </div>
             <button id="submitAnswers">Submit</button>
+            </form>
         </div>
         <div id="highscoresScreen" class="" data-state="hidden">
             <h1>Highscores</h1>
