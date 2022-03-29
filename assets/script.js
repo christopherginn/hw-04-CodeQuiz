@@ -11,7 +11,7 @@ var backWelcomeBtnEl = document.querySelector("#backtowelcome");
 var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#multiplechoice");
 var userScore = 0;
-var userNameInput = document.querySelector("#name");
+var userNameInput = document.querySelector("#username");
 
 var timeLeft = 15;
 
@@ -49,7 +49,7 @@ function populateQuestion() {
       currentQuestion++;
     } else if (currentQuestion === questions.length-1) {
         questionScreenEl.setAttribute("style", "display:none");
-        highscoresScreenEl.removeAttribute("style", "display");
+        endScreenEl.removeAttribute("style", "display");
         timerEl.setAttribute("style", "display:none");
     };
     
@@ -107,6 +107,18 @@ function init() {
         // countdown();
         populateQuestion();
         // userAnswer();
+        submitAnswersBtnEl.addEventListener("click", function(event){
+            event.preventDefault();
+    
+            var user = {
+                userName: userNameInput.value.trim(),
+                userScoreFinal: userScore
+            };
+    
+            localStorage.setItem("user", JSON.stringify(user));
+            endScreenEl.setAttribute("style", "display:none");
+            highscoresScreenEl.removeAttribute("style", "display");
+        });
         
 
     })
@@ -147,6 +159,7 @@ function countdown() {
   function gameOver() {
     questionScreenEl.setAttribute("style", "display:none");
     endScreenEl.removeAttribute("style", "display");
+
 
     // endScreenEl.textContent("Game Over");
   };
