@@ -12,19 +12,40 @@ var questionEl = document.querySelector("#question");
 var answersEl = document.querySelector("#multiplechoice");
 var userScore = 0;
 var userNameInput = document.querySelector("#username");
+var wrongAnswerMsg = document.querySelector(".wrongAnswer");
 
 var timeLeft = 15;
-
+var highscoreList = [];
 var questions = [
     {
-      question: "What house was Harry Potter in?",
-      answers: ["Gryffindoor", "Ravenclaw", "Slytherin", "Hufflepuff"],
-      answer: 0
+      question: "The SCRIPT tag enables you to enhance a web page with code written in which programming language?",
+      answers: ["SQL", "FORTRAN", "JavaScript", "Pascal"],
+      answer: 2
     },
     {
-      question: "What was Hermione's cat's name?",
-      answers: ["Crookshanks", "Peter Pettigrew", "Scabbers", "Harry"],
-      answer: 3
+      question: "Which HTML tag hyperlinks text?",
+      answers: ["DIV", "A", "IFRAME", "BR"],
+      answer: 1
+    },
+    {
+        question:"When elements are positioned absolutely, they can be layered on top of one another. What property determines the stacking order for layered elements?",
+        answers:["layer-number", "z-position", "z-index", "layer-order"],
+        answer: 2
+    },
+    {
+        question:"",
+        answers:[],
+        answer: 0
+    },
+    {
+        question:"",
+        answers:[],
+        answer: 0
+    },
+    {
+        question:"",
+        answers:[],
+        answer: 0
     },
     {
         question:"",
@@ -68,27 +89,15 @@ function populateQuestion() {
                 userScore +=5
                 console.log(userScore);
                 populateQuestion();
+                wrongAnswerMsg.textContent = ("");
             } else { // incorrect answer
                 timeLeft -= 5;
+                wrongAnswerMsg.textContent = ("Wrong answer. Please select a different answer.");
+                wrongAnswerMsg.setAttribute("style", "color:#ff0000");
             }
         }
     });
 };
-
-  function userAnswer(){
-      answersEl.addEventListener("click", function(event){
-        var userAnswerSel = event.target;
-        if (userAnswerSel.matches("li")) { 
-        // console.log(userAnswerSel.innerHTML);
-            if (userAnswerSel === questions[currentQuestion].answer) {
-                alert("Correct");
-            } else {
-                alert("incorrect");
-            }
-
-        }
-      });
-  }
 
 // welcomeScreenEl.setAttribute("style", "display:none");
 
@@ -114,10 +123,23 @@ function init() {
                 userName: userNameInput.value.trim(),
                 userScoreFinal: userScore
             };
-    
-            localStorage.setItem("user", JSON.stringify(user));
+            highscoreList.push(user);
+            localStorage.setItem("highScoreList", JSON.stringify(user));
+            
             endScreenEl.setAttribute("style", "display:none");
             highscoresScreenEl.removeAttribute("style", "display");
+
+
+
+
+            
+            backWelcomeBtnEl.addEventListener("click", function(){
+                highscoresScreenEl.setAttribute("style", "display:none");
+                welcomeScreenEl.removeAttribute("style", "display");
+                currentQuestion = 0;
+                populateQuestion();
+            });
+
         });
         
 
