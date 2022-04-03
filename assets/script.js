@@ -33,19 +33,19 @@ var questions = [
         answer: 2
     },
     {
-        question:"",
-        answers:[],
+        question:"In HTML, what symbols are used to create elements?",
+        answers:["[ ]", "( )", "< >", "/"],
+        answer: 2
+    },
+    {
+        question:"What does CSS stand for?",
+        answers:["Cascading Style Sheets", "Coded Styling Sheet", "Color Settings Selection", "Current System Style"],
         answer: 0
     },
     {
-        question:"",
-        answers:[],
-        answer: 0
-    },
-    {
-        question:"",
-        answers:[],
-        answer: 0
+        question:"In order use the functionality coded in Javascipt, the file contianining the Javascript does not always need to be linked to the HTML file.",
+        answers:["True", "False"],
+        answer: 1
     },
     {
         question:"",
@@ -149,26 +149,18 @@ function init() {
 function countdown() {
     // var timeLeft = 5;
   
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
-      // As long as the `timeLeft` is greater than 1
       if (timeLeft > 1) {
-        // Set the `textContent` of `timerEl` to show the remaining seconds
         timerEl.textContent = timeLeft + ' seconds remaining';
-        // Decrement `timeLeft` by 1
         timeLeft--;
       } else if (timeLeft === 1) {
-        // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
       } else if (currentQuestion === questions.length-1) {
         clearInterval(timeInterval);
       } else {
-        // Once `timeLeft` gets to 0, set `timerEl` to an empty string
         timerEl.textContent = '';
-        // Use `clearInterval()` to stop the timer
         clearInterval(timeInterval);
-        // Call the `displayMessage()` function
         gameOver();
       }
     }, 1000);
@@ -185,30 +177,6 @@ function countdown() {
 
     // endScreenEl.textContent("Game Over");
   };
-// function setEventListeners() {
-//     startBtnEl.addEventListener("click", function (evt) {
-//     evt.preventDefault();
- 
-//     var element = evt.target;
 
-//     // if (element.matches(".box")) {
-//         var state = element.getAttribute("data-state");
-    
-//         if (state === "hidden") {
-//           element.textContent = element.dataset.number;
-//           element.dataset.state = "visible";
-//         } else {
-//           element.textContent = "";
-//           element.dataset.state = "hidden";
-//           // element.setAttribute("data-state", "hidden");
-//         };
-//     //   }
-//     // screen1ButtonEle.addEventListener("click", function () {
-//     //   setState(2);
-//     // });
-//     // screen2ButtonEle.addEventListener("click", function () {
-//     //   setState(0);
-//     // });
-// });
 
 init();
